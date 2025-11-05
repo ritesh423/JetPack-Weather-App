@@ -1,0 +1,33 @@
+package com.riteshapps.jetpackweatherapp.viewmodel
+
+import android.app.Application
+import android.util.Log
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.riteshapps.jetpackweatherapp.api.WeatherApiInstance
+import com.riteshapps.jetpackweatherapp.models.WeatherResponse
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
+
+class WeatherViewModel(application: Application) : AndroidViewModel(application) {
+    private val _weatherData = MutableStateFlow<WeatherResponse?>(null)
+    val weatherData: StateFlow<WeatherResponse?> = _weatherData
+    private val weatherApi = WeatherApiInstance.create(context = application.applicationContext)
+
+
+
+    fun fetchWeather(city: String, apiKey: String) {
+        viewModelScope.launch {
+            try {
+                Log.d("Ritesh::", "Fetching weather for city=$city")
+                val response = weatherApi.getCityWeather(city, apiKey)
+                Log.d("Ritesh::", "Response received: ${response.name}")
+                _weatherData.value = response
+            } catch (e: Exception) {
+                Log.e("Ritesh::", "Error fetching weather: ${e.message}", e)
+            }
+        }
+    }
+}
