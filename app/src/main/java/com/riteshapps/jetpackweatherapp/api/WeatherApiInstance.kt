@@ -19,8 +19,6 @@ interface WeatherApiInstance {
     ): WeatherResponse
 
     companion object {
-        private const val BASE_URL = "https://api.openweathermap.org/data/2.5/"
-
         fun create(context: Context): WeatherApiInstance {
             // ✅ Create OkHttpClient and attach Chucker
             val client = OkHttpClient.Builder()
@@ -29,7 +27,7 @@ interface WeatherApiInstance {
 
             // ✅ Pass client to Retrofit
             val retrofit = Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()

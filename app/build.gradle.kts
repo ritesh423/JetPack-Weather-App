@@ -63,8 +63,9 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.11.0")
 
     // Chucker (debug network inspector)
-    debugImplementation("com.github.chuckerteam.chucker:library:4.2.0")
-    releaseImplementation("com.github.chuckerteam.chucker:library-no-op:4.2.0")
+    debugImplementation("com.github.chuckerteam.chucker:library:4.0.0")
+    releaseImplementation("com.github.chuckerteam.chucker:library-no-op:4.0.0")
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
