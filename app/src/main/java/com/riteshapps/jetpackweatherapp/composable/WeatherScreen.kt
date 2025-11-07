@@ -94,7 +94,7 @@ fun WeatherScreen() {
             Button(
                 onClick = {
                     if (city.isNotBlank()) {
-                        viewModel.fetchWeather(city, apiKey)
+                        viewModel.fetchWeather(city)
                     }
                 },
                 shape = RoundedCornerShape(16.dp),
