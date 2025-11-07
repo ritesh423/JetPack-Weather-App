@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.riteshapps.jetpackweatherapp"
-        minSdk = 24
+        minSdk = 33
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
@@ -65,6 +65,9 @@ dependencies {
     // Chucker (debug network inspector)
     debugImplementation("com.github.chuckerteam.chucker:library:4.0.0")
     releaseImplementation("com.github.chuckerteam.chucker:library-no-op:4.0.0")
+
+//    SplashScreen
+        implementation("androidx.core:core-splashscreen:1.0.0")
 
 
     testImplementation(libs.junit)

@@ -62,7 +62,7 @@ fun WeatherScreen() {
         modifier = Modifier
             .fillMaxSize()
             .background(backgroundGradient)
-            .padding(20.dp)
+            .padding(20.dp,30.dp,20.dp,20.dp)
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
