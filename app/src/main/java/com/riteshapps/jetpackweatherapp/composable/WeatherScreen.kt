@@ -1,5 +1,6 @@
 package com.riteshapps.jetpackweatherapp.composable
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -30,9 +31,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -44,38 +46,34 @@ import com.riteshapps.jetpackweatherapp.viewmodel.WeatherViewModel
 fun WeatherScreen() {
     val viewModel: WeatherViewModel = viewModel()
     val weatherData by viewModel.weatherData.collectAsState()
+    var city by remember { mutableStateOf("") }
 
-    var city by remember {
-        mutableStateOf("")
-    }
     val apiKey = Constants.API_KEY
-
-    // Gradient background (sky-inspired)
-    val backgroundGradient = Brush.verticalGradient(
-        listOf(
-            Color(0xFFF7F8FA), // very light gray (top)
-            Color(0xFFECECEC), // slightly darker gray (bottom)
-        )
-    )
 
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(backgroundGradient)
-            .padding(20.dp,30.dp,20.dp,20.dp)
     ) {
+        Image(
+            painter = painterResource(id = R.drawable.background),
+            contentDescription = "Background",
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
+
+        // ✅ Foreground content
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(20.dp),
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(20.dp, 30.dp, 20.dp, 20.dp)
         ) {
-            // App title
             Text(
-                modifier = Modifier.padding(0.dp,10.dp,0.dp,10.dp),
                 text = "Weather App",
                 fontSize = 32.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color.Black,
+                color = Color.White
             )
 
             TextField(
@@ -88,8 +86,7 @@ fun WeatherScreen() {
                 singleLine = true
             )
 
-
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(8.dp))
 
             Button(
                 onClick = {
@@ -102,12 +99,11 @@ fun WeatherScreen() {
                 modifier = Modifier
                     .fillMaxWidth(0.6f)
                     .height(50.dp)
-                    .padding(0.dp,0.dp,0.dp,10.dp)
             ) {
                 Text("Check Weather", fontSize = 18.sp, color = Color.White)
             }
 
-            // Weather cards grid
+            // ✅ Weather info cards
             weatherData?.let {
                 Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                     Row(
@@ -149,6 +145,7 @@ fun WeatherScreen() {
         }
     }
 }
+
 @Composable
 fun WeatherCard(
     icon: Int,
