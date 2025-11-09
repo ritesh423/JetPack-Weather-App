@@ -5,6 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.riteshapps.jetpackweatherapp.composable.ForecastScreen
 import com.riteshapps.jetpackweatherapp.composable.WeatherScreen
 import com.riteshapps.jetpackweatherapp.utils.Routes
 
@@ -13,6 +14,9 @@ fun Navigation(navController: NavHostController , modifier: Modifier) {
     NavHost(navController, startDestination= Routes.HOME, builder = {
         composable(Routes.HOME){
             WeatherScreen()
+        }
+        composable(Routes.FORECAST){
+            ForecastScreen()
         }
     })
 }

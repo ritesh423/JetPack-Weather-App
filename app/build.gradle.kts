@@ -66,9 +66,11 @@ dependencies {
     debugImplementation("com.github.chuckerteam.chucker:library:4.0.0")
     releaseImplementation("com.github.chuckerteam.chucker:library-no-op:4.0.0")
 
-//    SplashScreen
+    //SplashScreen
         implementation("androidx.core:core-splashscreen:1.0.0")
 
+    //Google Play Service
+    implementation("com.google.android.gms:play-services-location:21.3.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

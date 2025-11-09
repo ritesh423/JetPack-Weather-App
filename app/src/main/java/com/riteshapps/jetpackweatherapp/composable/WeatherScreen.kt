@@ -36,7 +36,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.riteshapps.jetpackweatherapp.R
-import com.riteshapps.jetpackweatherapp.utils.Constants
 import com.riteshapps.jetpackweatherapp.viewmodel.WeatherViewModel
 
 @Composable
@@ -47,7 +46,6 @@ fun WeatherScreen() {
     var city by remember {
         mutableStateOf("")
     }
-    val apiKey = Constants.API_KEY
 
     // Gradient background (sky-inspired)
     val backgroundGradient = Brush.verticalGradient(
